@@ -73,11 +73,16 @@ The output results (in order) were;
   <b>Hog Params 4</b>
 </p>
 
-*Finally decided to stick to proposed one in the course .. :) *
+
+*Finally decided to stick to proposed one in the course*
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
-I trained a linear SVM using...
+The code is in [Training.ipynb](Training.ipynb) in the sixth cell. The color space used was `LUV`, spatial binning with 16x16, color histogram for all channels in 32 bins, and finally the hog features for ALL channels. The final number of features was 6108. The features were normalized using a standard scaler. 
+
+I used a Linear SVM with a train, test ratio of 8:2. 
+
+The final accuracy reached was >99%. The model was saved for using in the pipeline. 
 
 ### Sliding Window Search
 
