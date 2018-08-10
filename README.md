@@ -90,14 +90,18 @@ The final accuracy reached was >99%. The model was saved for using in the pipeli
 
 I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
 
-![alt text][image3]
+<p align="center">
+  <img src="output_images/window.png">
+  <br>
+  <b>All Windows - 307 Total</b>
+</p>
+
+The code is in [Pipeline.ipynb](Pipeline.ipynb) file in the 3 and 4th cells. I took sample images from the project video with the cars in various positions. For each of this positions I tried to apporximate the cell boundaries. The final boundaries are available in cell 3 of the notebook. For the overlaps, I found through experimentation that the vertical overlap was giving better results that the horizontal ones. However, I feel there are still too many windows. There is also some empty window space towards the right. 
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-![alt text][image4]
----
 
 ### Video Implementation
 
