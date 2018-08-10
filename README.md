@@ -131,26 +131,39 @@ No modification was made to the classifier. Here are some example images for the
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
-
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
 
-### Here are six frames and their corresponding heatmaps:
+### Here are six frames and their corresponding heatmaps. The red dots are the centroids:
+<p align="center">
+  <img src="output_images/op1.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/op2.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/op3.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/op4.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/op5.png">
+  <br>
+  <b>Images and Heatmap</b>
+</p>
 
-![alt text][image5]
-
-### Here is the output of `scipy.ndimage.measurements.label()` on the integrated heatmap from all six frames:
-![alt text][image6]
-
-### Here the resulting bounding boxes are drawn onto the last frame in the series:
-![alt text][image7]
-
-
+### Improving the video
+The two issues that I was having was removing spurious detections and ensuring a reasonable bounding box for failed detections. I though of solving them by using a queue of detections in the `Object_Tracking` class. There is a `MIN_ENTRY_FRAMES = 5` which means that a bounding box must be present in atleast 5 consecutive frames for the system to identify that as a car. There is also a `MIN_EXIT_FRAMES = 10` which means that an already detected car will still be considered if the detection fails for 9 consecutive frames. 
 
 ---
 
@@ -158,5 +171,8 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+1. In the initial stage I had just used the GTI dataset and not the KITTI one resulting in large number of spurious results which I found it difficult to address in the `Object_Tracking` pipeline. I lost a lot of time because of this. The KITTI database addition hugely improved performance. 
+1. There needs to be pruning of centroids detected in the `Object_Tracking` class. You can see that sometimes the same car is detected twice because of this tracking class. This can be solved by ensuring that 2 bounding boxes with > X% overlap are merged. 
+1. Performance of my algorithm needs to be improved. 307 windows is just too much. 
+1. Bounding box stability needs to be improved as well. 
 
