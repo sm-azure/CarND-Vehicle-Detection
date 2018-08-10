@@ -100,7 +100,32 @@ The code is in [Pipeline.ipynb](Pipeline.ipynb) file in the 3 and 4th cells. I t
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
-Ultimately I searched on two scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
+No modification was made to the classifier. Here are some example images for the hot windows:
+<p align="center">
+  <img src="output_images/class_1.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/class_2.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/class_3.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/class_4.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/class_5.png">
+  <br>
+</p>
+<p align="center">
+  <img src="output_images/class_6.png">
+  <br>
+  <b>Detection using Classifier</b>
+</p>
 
 
 ### Video Implementation
