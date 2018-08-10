@@ -45,7 +45,35 @@ Here is an example using the `LUV` color space and HOG parameters of `orientatio
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations of parameters and...
+I tried a number of color spaces to begin with and spend sometime exploring how the images looked in the different color spaces and selected the `LUV` color space. Here are some of the hog combinations I tried,
+1. orient 10, pix_per_cell = 16, cell_per_block = 2
+1. orient 3, pix_per_cell = 8, cell_per_block = 2
+1. orient 32, pix_per_cell = 8, cell_per_block = 2
+1. orient 9, pix_per_cell = 8, cell_per_block = 4
+
+The output results (in order) were;
+<p align="center">
+  <img src="output_images/hog_1.png">
+  <br>
+  <b>Hog Params 1</b>
+</p>
+<p align="center">
+  <img src="output_images/hog_2.png">
+  <br>
+  <b>Hog Params 2</b>
+</p>
+<p align="center">
+  <img src="output_images/hog_3.png">
+  <br>
+  <b>Hog Params 3</b>
+</p>
+<p align="center">
+  <img src="output_images/hog_4.png">
+  <br>
+  <b>Hog Params 4</b>
+</p>
+
+*Finally decided to stick to proposed one in the course .. :) *
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
