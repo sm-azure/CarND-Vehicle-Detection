@@ -88,8 +88,6 @@ The final accuracy reached was >99%. The model was saved for using in the pipeli
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I decided to search random window positions at random scales all over the image and came up with this (ok just kidding I didn't actually ;):
-
 <p align="center">
   <img src="output_images/window.png">
   <br>
@@ -135,6 +133,7 @@ Here's a [link to my video result](./output.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+The code is in [Pipeline.ipynb](Pipeline.ipynb) file in the 10th cell.
 
 I recorded the positions of positive detections in each frame of the video.  From the positive detections I created a heatmap and then thresholded that map to identify vehicle positions.  I then used `scipy.ndimage.measurements.label()` to identify individual blobs in the heatmap.  I then assumed each blob corresponded to a vehicle.  I constructed bounding boxes to cover the area of each blob detected.  
 Here's an example result showing the heatmap from a series of frames of video, the result of `scipy.ndimage.measurements.label()` and the bounding boxes then overlaid on the last frame of video:
@@ -164,6 +163,8 @@ Here's an example result showing the heatmap from a series of frames of video, t
 
 ### Improving the video
 The two issues that I was having was removing spurious detections and ensuring a reasonable bounding box for failed detections. I though of solving them by using a queue of detections in the `Object_Tracking` class. There is a `MIN_ENTRY_FRAMES = 5` which means that a bounding box must be present in atleast 5 consecutive frames for the system to identify that as a car. There is also a `MIN_EXIT_FRAMES = 10` which means that an already detected car will still be considered if the detection fails for 9 consecutive frames. 
+
+The code is in [Pipeline.ipynb](Pipeline.ipynb) file in the 9th cell.
 
 ---
 
